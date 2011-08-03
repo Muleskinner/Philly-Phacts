@@ -1,0 +1,12 @@
+This is a mockup of basic markup for a blog post.
+
+[heading]BBCode-style markup[/heading]
+<!-- <h3 class="post-heading" title="BBCode-style markup">BBcode-style markup</h3> -->
+[heading id="bbcode"]BBCode-style markup[/heading] 
+<!--
+<h3 class="post-heading" id="bbcode" title="BBCode-style markup">
+	<a class="post-anchor" href="#bbcode" title="Link to this element">#</a>
+	BBCode-style markup
+</h3>
+-->
+BBCode-style markup is quite familiar to those who use forums and certain social media sites.

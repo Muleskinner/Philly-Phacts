@@ -8,8 +8,7 @@
 			$this -> addTitle($title);
 			$this -> addContent($content);
 			$this -> addMetadata($metadata);
-			$this -> addHeadTag();
-			$this -> addBodyTag();
+			$this -> parseTags($metadata -> tags);
 			$this -> formatOutput();
 		}
 
@@ -25,12 +24,28 @@
 
 		public function addMetadata($metadata)
 		{
-			$this -> data -> metadata = $metadata . "";
+			$this -> data -> metadata = $metadata;
+		}
+
+		private function parseTags($tags)
+		{
+			$tagString = implode(", ", $tags);
+			$this -> data -> metadata -> tagstring = $tagString;
+		}
+
+		private function formatOutput()
+		{
+			$this -> addHeadTag();
+			$this -> addBodyTag();
+			$this -> data -> output = $this -> data -> head;
+			$this -> data -> output .= $this -> data -> body;			
 		}
 
 		public function addHeadTag()
 		{
-			$head = file_get_contents("templates/head.php", true);
+			ob_start();
+			require_once("templates/head.php");
+			$head = ob_get_clean();
 			$head = str_replace("%Title%", $this -> data -> title, $head);
 			$this -> data -> head = $head;
 		}
@@ -42,14 +57,11 @@
 			$body = ob_get_clean();
 			$body = str_replace("%Title%", $this -> data -> title, $body);
 			$body = str_replace("%Content%", $this -> data -> content, $body);
-			$body = str_replace("%Metadata%", $this -> data -> metadata, $body);
+			$body = str_replace("%Author%", $this -> data -> metadata -> author, $body);
+			$body = str_replace("%Date%", $this -> data -> metadata -> timestamp -> date, $body);
+			$body = str_replace("%Time%", $this -> data -> metadata -> timestamp -> time, $body);	
+			$body = str_replace("%Tags%", $this -> data -> metadata -> tagstring, $body);
 			$this -> data -> body = $body;
-		}
-
-		private function formatOutput()
-		{
-			$this -> data -> output = $this -> data -> head;
-			$this -> data -> output .= $this -> data -> body;			
 		}
 
 		public function output()
