@@ -9,9 +9,10 @@
 			$this -> data -> database = $database;
 			$this -> data -> username = $user;
 			$this -> data -> password = $password;
+			$this -> connect();
 		}
 
-		public function connect()
+		private function connect()
 		{
 			$this -> data -> connection = new PDO($this -> data -> database, $this -> data -> username, $this -> data -> password);
 		}
@@ -40,7 +41,7 @@
 			{
 				die("PostQueries -> getPostByIndex: Index provided is not an integer");
 			}
-			$prepared -> bindParam("index", $index, PDO::PARAM_INT);
+			$prepared -> bindParam(":index", $index, PDO::PARAM_INT);
 			$prepared -> execute();
 			$this -> data -> result = $prepared -> fetchAll();
 		}
@@ -66,11 +67,9 @@
 			$order = $order . "";
 			$orders = array("ASC", "DESC");
 			$prepared;
-			$newOrder;
 			if($order && in_array($order, $orders))
 			{
 				$prepared = $this -> data -> connection -> prepare($query -> orderStr);
-				$newOrder = "ORDER BY text " . $order;
 				$prepared -> bindParam(":order", $newOrder, PDO::PARAM_STR);
 			}else if($order && !in_array($order, $orders))
 			{
@@ -78,7 +77,6 @@
 			}else if(!$order)
 			{
 				$prepared = $this -> data -> connection -> prepare($query -> str);
-				$newOrder = "";
 			}
 			$prepared -> execute();
 			$this -> data -> result = $prepared -> fetchAll();
