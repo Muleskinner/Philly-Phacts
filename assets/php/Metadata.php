@@ -29,6 +29,7 @@
 		private function createTimestamp($create)
 		{
 			$timestamp;
+			date_default_timezone_set("America/Denver");
 			if($create)
 			{
 				$timestamp -> date = date("l, F jS, Y");

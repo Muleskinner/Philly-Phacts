@@ -3,7 +3,7 @@
 	class DatabaseCredentials implements IData
 	{
 		const DATABASE = "foo";
-		const HOST = "localhost";
+		const HOST = "127.0.0.1";
 		const PASSWORD = "foobarbaz";
 		const USERNAME = "root";
 		private $data;

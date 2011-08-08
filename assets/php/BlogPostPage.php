@@ -75,12 +75,6 @@
 			require_once(realpath(dirname(__FILE__) . "/templates/content/blogpostpage/body.php"));
 			$body = ob_get_clean();
 			$body = str_replace("%Title%", $this -> data -> title, $body);
-			$body = str_replace("%User Directory%", "users/" . $this -> data -> metadata -> author -> index . "/", $body);
-			$body = str_replace("%Display Group%", $this -> data -> metadata -> author -> displaygroup, $body);
-			$body = str_replace("%Author%", $this -> data -> metadata -> author -> fullname, $body);
-			$body = str_replace("%Date%", $this -> data -> metadata -> timestamp -> date, $body);
-			$body = str_replace("%Time%", $this -> data -> metadata -> timestamp -> time, $body);	
-			$body = str_replace("%Tags%", $this -> data -> metadata -> tagstring, $body);
 			$post = new BlogPost($this -> data -> post["title"], $this -> data -> post["text"], $this -> data -> metadata);
 			$body = str_replace("%Content%", $post -> output(), $body);
 			$this -> data -> body = $body;
