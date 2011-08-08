@@ -1,0 +1,2 @@
+<h1>Philly Phacts</h1>
+<?php include_once(realpath(dirname(__FILE__) . "/navigation.php")); ?>

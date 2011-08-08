@@ -53,6 +53,7 @@
 			$body = str_replace("%Tags%", $this -> data -> metadata -> tagstring, $body);
 			$body = trim($body);
 			$this -> data -> output = $body;
+			var_dump($body);
 		}
 
 		public function output()

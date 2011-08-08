@@ -23,7 +23,10 @@ DROP TABLE IF EXISTS `posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `posts` (
-  `text` text NOT NULL,
+  `title` text,
+  `text` text,
+  `author` text,
+  `tags` text,
   `index` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`index`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -35,8 +38,36 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in diam nisl. Aliquam erat volutpat. Integer augue diam, scelerisque in accumsan sit amet, pretium scelerisque mi. Donec hendrerit justo sit amet libero consequat a porttitor elit posuere. In vel tincidunt ligula. Praesent scelerisque nulla eget risus elementum nec elementum dui ullamcorper. Donec tristique iaculis velit eu consequat. Vestibulum sed nisl at magna tincidunt ornare. Pellentesque eu dictum velit. Nunc a auctor metus. Etiam egestas, justo vitae mattis tempus, ante enim aliquam justo, vel commodo ligula erat at leo. Nullam eget commodo libero. Quisque suscipit lacus nec justo mattis eu placerat tortor congue.',1),('hi there',2);
+INSERT INTO `posts` VALUES ('This is a blog post','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in diam nisl. Aliquam erat volutpat. Integer augue diam, scelerisque in accumsan sit amet, pretium scelerisque mi. Donec hendrerit justo sit amet libero consequat a porttitor elit posuere. In vel tincidunt ligula. Praesent scelerisque nulla eget risus elementum nec elementum dui ullamcorper. Donec tristique iaculis velit eu consequat. Vestibulum sed nisl at magna tincidunt ornare. Pellentesque eu dictum velit. Nunc a auctor metus. Etiam egestas, justo vitae mattis tempus, ante enim aliquam justo, vel commodo ligula erat at leo. Nullam eget commodo libero. Quisque suscipit lacus nec justo mattis eu placerat tortor congue.','matt','this,is,a,blog,post',1),('Hi','hi there','matt','hello,there',2);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `email` text,
+  `username` text,
+  `password` text,
+  `fullname` text,
+  `userlevel` int(11) DEFAULT NULL,
+  `index` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`index`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('matt@fortybelow.ca','matt','foobarbaz','Matt McDonald',4,1),(NULL,'dummy','bingbangboom','Dumb Dummy',NULL,2),(NULL,'matthias','substringsearch','Matthias the Warrrior',NULL,3);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +79,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-08-04 18:12:01
+-- Dump completed on 2011-08-07 21:52:08

@@ -23,6 +23,7 @@
 			$authorData -> gravatar = $author -> getGravatar();
 			$authorData -> usergroup = $author -> getUsergroup();
 			$authorData -> displaygroup = $author -> getDisplayGroup();
+			var_dump($authorData);
 			return $authorData;
 		}
 

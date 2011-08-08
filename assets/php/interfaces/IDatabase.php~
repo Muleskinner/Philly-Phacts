@@ -1,0 +1,10 @@
+<?php
+	require_once("IData.php");
+	interface IDatabase extends IData
+	{
+		public function select($get, $source, $where, $condition, $order);
+		public function insert($get, $source, $where, $condition, $order);
+		public function update($get, $source, $where, $condition, $order);
+		public function delete($get, $source, $where, $condition, $order);
+	}
+?>

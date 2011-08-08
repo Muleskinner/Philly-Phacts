@@ -1,0 +1,71 @@
+<?php
+	require_once(dirname(__FILE__) . "/../interfaces/IUser.php");
+	class Author implements IUser
+	{
+		const DISPLAY_GROUP = "author";
+		const USER_LEVEL = 3;
+		const USER_GROUP = "author";
+		private $data;
+		public function Author($userdata)
+		{
+			$this -> data -> email = $userdata["email"];
+			$this -> data -> username = $userdata["username"];
+			$this -> data -> password = $userdata["password"];
+			$this -> data -> fullname = $userdata["fullname"];
+			$this -> data -> userlevel = $this::USER_LEVEL;			
+			$this -> data -> index = $userdata["index"];
+			$this -> data -> usergroup = $this::USER_GROUP;
+			$this -> data -> displaygroup = $this::DISPLAY_GROUP;			
+		}
+
+		public function getEmail()
+		{
+			return $this -> data -> email;
+		}
+
+		public function getUsername()
+		{
+			return $this -> data -> username;
+		}
+
+		public function getPassword()
+		{
+			return $this -> data -> password;
+		}
+
+		public function getFullname()
+		{
+			return $this -> data -> fullname;
+		}
+
+		public function getUserLevel()
+		{
+			return $this -> data -> userlevel;
+		}
+
+		public function getIndex()
+		{
+			return $this -> data -> index;
+		}
+
+		public function getUsergroup()
+		{
+			return $this -> data -> usergroup;
+		}
+
+		public function getDisplayGroup()
+		{
+			return $this -> data -> displaygroup;
+		}
+
+		public function getGravatar()
+		{
+			
+		}
+
+		public function output()
+		{
+			return $this -> data;
+		}
+	}
+?>

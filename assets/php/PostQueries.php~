@@ -63,8 +63,8 @@
 
 		public function getAllPosts($order)
 		{
-			$query -> str = "SELECT * FROM `posts`";
-			$query -> orderStr = "SELECT * FROM `posts` ORDER BY `text` :order";
+			$query -> str = "SELECT * FROM posts";
+			$query -> orderStr = "SELECT * FROM posts ORDER BY text :order";
 			$order = $order . "";
 			$orders = array("ASC", "DESC");
 			$prepared;
