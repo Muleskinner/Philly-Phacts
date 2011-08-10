@@ -1,18 +1,19 @@
 <?php
 	require_once(realpath(dirname(__FILE__) . "/interfaces/IPassword.php"));
-	require_once(realpath(dirname(__FILE__) . "/../../plugins/php/CryptLib/CryptLib.php"));	
+	require_once(realpath(dirname(__FILE__) . "/../plugins/php/CryptLib/CryptLib.php"));	
 	class Password implements IPassword
 	{
 		private $data;
 		public function Password($password)
 		{
 			$this -> data -> password = $password . "";
-			$this -> data -> crypt = new CryptLib();
+			$this -> data -> crypt = new CryptLib\CryptLib;
+			$this -> setPassword($password);
 		}
 
-		public function verifyPassword($password)
+		public function verifyPassword()
 		{
-			return $this -> data -> crypt -> verifyPasswordHash($this -> data -> hash, $password);
+			return $this -> data -> crypt -> verifyPasswordHash($this -> data -> password, $this -> data -> hash);
 		}
 
 		public function setPassword($password)

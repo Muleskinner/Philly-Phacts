@@ -42,6 +42,11 @@
 		{
 			ob_start();
 			require_once(realpath(dirname(__FILE__) . "/templates/content/blogpost/body.php"));
+			$this -> replaceBodyPlaceholders();
+		}
+
+		private function replaceBodyPlaceholders()
+		{
 			$body = ob_get_clean();
 			$body = str_replace("%Title%", $this -> data -> title, $body);
 			$body = str_replace("%Content%", $this -> data -> content, $body);
@@ -51,7 +56,7 @@
 			$body = str_replace("%Date%", $this -> data -> metadata -> timestamp -> date, $body);
 			$body = str_replace("%Time%", $this -> data -> metadata -> timestamp -> time, $body);	
 			$body = str_replace("%Tags%", $this -> data -> metadata -> tagstring, $body);
-			$body = trim($body);
+			$body = trim($body);			
 			$this -> data -> output = $body;
 		}
 
